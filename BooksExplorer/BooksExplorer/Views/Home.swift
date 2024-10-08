@@ -47,11 +47,13 @@ struct Home: View {
                     Spacer()
                 } else {
                     List(viewModel.books) { book in
-                        BookRow(book: book)
-                            .onAppear {
-                                viewModel.loadMoreBooksIfNeeded(
-                                    currentBook: book)
-                            }
+                        NavigationLink(destination: BookDetail(book: book)) {
+                            BookRow(book: book)
+                        }
+                        .onAppear {
+                            viewModel.loadMoreBooksIfNeeded(
+                                currentBook: book)
+                        }
                     }
                 }
             }
